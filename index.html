@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+
+    
+<body>
+    
+    <h1>Weather Adviser</h1>
+    <form action="" id="weather">
+       <p> 
+            <label for="temperature">Enter the temperature</label>
+            <input type="number" name="temperature" id="temperature">
+        </p>
+        <p>
+            <label for="rain">raining?</label>
+            <select name="rain" id="rain">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </p>
+        <input type="submit" value="submit">
+    </form>
+    <p id="advice"></p>
+    
+
+<script>
+    //...............................leap year........................................
+   function isLeapYear(year) {
+    if (year % 4 === 0) {
+        if (year % 100 === 0) {
+            if (year % 400 === 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return true;
+        }
+    } else {
+        return false;
+    }
+}
+
+console.log(isLeapYear(2024)); 
+
+//********************************************weather*****************************************
+    document.getElementById('weather').addEventListener('submit',function(e){
+        e.preventDefault();
+        const temperature=document.getElementById('temperature').value;
+        const rain = document.getElementById('rain').value;
+        let advice='';
+        if (temperature < 0) {
+                advice = 'It\'s freezing outside. Wear a heavy coat, hat, scarf, and gloves.';
+            } else if (temperature >= 0 && temperature < 10) {
+                advice = 'It\'s cold outside. Wear a coat and a hat.';
+            } else if (temperature >= 10 && temperature < 20) {
+                advice = 'It\'s cool outside. Wear a jacket or sweater.';
+            } else if (temperature >= 20 && temperature < 30) {
+                advice = 'It\'s warm outside. Wear light clothing.';
+            } else if (temperature >= 30) {
+                advice = 'It\'s hot outside. Wear very light clothing and stay hydrated.';
+            }
+            if (rain === 'yes') {
+                advice += ' Also, don\'t forget to take an umbrella or a raincoat.';
+            }
+            document.getElementById('advice').innerText=advice;
+
+    });
+    //***************************************power************************************************
+
+    function power(base, exponent) {
+    
+    if (exponent === 0) {
+        return 1;
+    }
+    
+    if (exponent === 1) {
+        return base;
+    }
+    
+    return base * power(base, exponent - 1);
+}
+
+
+console.log(power(2, 3)); 
+
+
+</script>
+</body>
+</html>
